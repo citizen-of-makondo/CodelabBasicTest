@@ -7,11 +7,59 @@
 Создайте Composable с именем `MyApp`, содержащим приветствие.
 
 ```
-@Composableprivate fun MyApp() {    Surface(color = MaterialTheme.colors.background) {        Greeting("Android")    }}
+@Composable
+private fun MyApp() {
+    Surface(color = MaterialTheme.colors.background) {
+        Greeting("Android")
+    }
+}
 ```
 
-Это позволяет вам очистить `onCreate`обратный вызов и предварительный просмотр, поскольку теперь вы можете повторно использовать `MyApp`составной объект, избегая дублирования кода. Ваш `MainActivity.kt`файл должен выглядеть так:
-
-```kotlin
-import android.os.Bundleimport androidx.activity.ComponentActivityimport androidx.activity.compose.setContentimport androidx.compose.foundation.layout.paddingimport androidx.compose.material.MaterialThemeimport androidx.compose.material.Surfaceimport androidx.compose.material.Textimport androidx.compose.runtime.Composableimport androidx.compose.ui.Modifierimport androidx.compose.ui.tooling.preview.Previewimport androidx.compose.ui.unit.dpimport com.codelab.basicstep1.ui.theme.BasicsCodelabThemeclass MainActivity : ComponentActivity() {    override fun onCreate(savedInstanceState: Bundle?) {        super.onCreate(savedInstanceState)        setContent {            BasicsCodelabTheme {                MyApp()            }        }    }}@Composableprivate fun MyApp() {    Surface(color = MaterialTheme.colors.background) {        Greeting("Android")    }}@Composableprivate fun Greeting(name: String) {    Surface(color = MaterialTheme.colors.primary) {        Text(text = "Hello $name!", modifier = Modifier.padding(24.dp))    }}@Preview(showBackground = true)@Composableprivate fun DefaultPreview() {    BasicsCodelabTheme {        MyApp()    }}
 ```
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.codelab.basicstep1.ui.theme.BasicsCodelabTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            BasicsCodelabTheme {
+                MyApp()
+            }
+        }
+    }
+}
+
+@Composable
+private fun MyApp() {
+    Surface(color = MaterialTheme.colors.background) {
+        Greeting("Android")
+    }
+}
+
+@Composable
+private fun Greeting(name: String) {
+    Surface(color = MaterialTheme.colors.primary) {
+        Text(text = "Hello $name!", modifier = Modifier.padding(24.dp))
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun DefaultPreview() {
+    BasicsCodelabTheme {
+        MyApp()
+    }
+}
+```
+
