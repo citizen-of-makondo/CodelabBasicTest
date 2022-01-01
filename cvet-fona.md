@@ -5,7 +5,12 @@
 Примечание. `Surface`И `MaterialTheme`являются концепциями, связанными с [Material Design](https://material.io/design/introduction) , системой дизайна, созданной Google, чтобы помочь вам создавать пользовательские интерфейсы и возможности.
 
 ```
-@Composableprivate fun Greeting(name: String) {    Surface(color = MaterialTheme.colors.primary) {        Text (text = "Hello $name!")    }}
+@Composable
+private fun MyApp() {
+    Surface(color = MaterialTheme.colors.background) {
+        Greeting("Android")
+    }
+}
 ```
 
 Компоненты, вложенные внутрь, `Surface`будут нарисованы поверх этого цвета фона.
@@ -35,10 +40,52 @@
 Теперь добавьте отступ к вашему `Text`на экране:
 
 ```
-import androidx.compose.foundation.layout.paddingimport androidx.compose.ui.Modifierimport androidx.compose.ui.unit.dp...@Composableprivate fun Greeting(name: String) {    Surface(color = MaterialTheme.colors.primary) {        Text(text = "Hello $name!", modifier = Modifier.padding(24.dp))    }}
-```
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.codelab.basicstep1.ui.theme.BasicsCodelabTheme
 
-Нажмите « **Построить и обновить»,** чтобы увидеть новые изменения.
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            BasicsCodelabTheme {
+                MyApp()
+            }
+        }
+    }
+}
+
+@Composable
+private fun MyApp() {
+    Surface(color = MaterialTheme.colors.background) {
+        Greeting("Android")
+    }
+}
+
+@Composable
+private fun Greeting(name: String) {
+    Surface(color = MaterialTheme.colors.primary) {
+        Text(text = "Hello $name!", modifier = Modifier.padding(24.dp))
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun DefaultPreview() {
+    BasicsCodelabTheme {
+        MyApp()
+    }
+}
+```
 
 ![52d5ed8919f277f0.png](https://developer.android.com/codelabs/jetpack-compose-basics/img/52d5ed8919f277f0.png)
 
